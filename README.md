@@ -33,5 +33,3 @@ My Projects / Notes for LaTeX course at Cal Poly with Dr. Sean Gasiorek.
 **Week 14:** Nov. 30 — Beamer: slides, posters, presentations
 
 **Week 15:** Dec. 7 — Miscellaneous
-
-*Every week includes an in-class activity and Texnique practice. Note: Week 3 appears to be missing/skipped in the original schedule — worth double-checking with your syllabus in case that's a typo rather than intentional.*
