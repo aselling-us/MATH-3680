@@ -1,6 +1,7 @@
 # MATH 3680 - Latex
 My Projects / Notes for LaTeX course at Cal Poly with Dr. Sean Gasiorek.
 
+I have written a custom alias `lmake` on my laptop. lmake compiled in the terminal in a week's directory. 
 ## Planned Schedule from Syllabus
 **Week 1:** Aug. 24 — Intro to LaTeX, basic syntax, install LaTeX
 

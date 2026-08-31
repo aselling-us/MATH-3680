@@ -1,0 +1,108 @@
+% ASSIGNMENT DETAILS
+% Modify the Startfile document to include
+
+%     An illustration of the use of the \section, \subsection, etc. commands. 
+%     Include at least two sections and at least two subsections in each section. 
+%     Your sections and subsections (and subsubsections if you choose) can just include mathematical formulas and sentences, as you did last week. You could modify your document from last week to add this structure to it!
+%     Include at least one instance of the equation environment and include on reference to an equation in your text. 
+
+% Upload both the .tex file and the PDF of your output. 
+
+% First we need to tell LaTeX what type of document we'll be writing
+\documentclass[12pt]{article} %lots of other options here, like amsart, among others
+
+% Preamble:
+
+%Here's where packages go. We'll talk more about packages in *two* weeks
+\usepackage{amsmath} %includes lots of mathematical symbols and content
+\usepackage{lipsum} % For blind text
+
+
+\title{Math 3680: Week 2}
+\author{Arjan Singh Ellingson}
+%\date{August 24th, 2026}
+\date{\today}
+
+\begin{document}
+
+% calls title, author, date info
+\maketitle 
+
+% auto table of contents, requires being compiled twice.
+\tableofcontents
+
+\section{Introduction}
+Welcome to my \LaTeX document. For example's sake, I will tell you what I did this weekend. Hopefully this brings you a bit of joy, as it was fun for me to write too.
+% \LaTeX has seven layers of indexed text environments: {\tt  \textbackslash part, \textbackslash chapter, \textbackslash section, \textbackslash subsection, \textbackslash subsubsection, \textbackslash paragraph}, and { \tt \textbackslash subparagraph}. The title for each of these will follow in curly brackets \{ (title goes here) \}. 
+
+\section{Friday}
+% You may have noticed that we didn't use the {\tt  \textbackslash part} or {\tt \textbackslash chapter} titles yet. These will activate and display differently if we change the document class {\tt  article} to {\tt report} or {\tt book}.  In general, {\tt \textbackslash section} will be our top-level command. 
+
+\subsection{CSC 4880}
+Friday was a bit crazy. I had my \textbf{8 AM} class of Artificial Intelligence, \textit{CSC 4880} now on the semester system. Unfortunately, the professor is extremely dull and the slides are \emph{disastrous}! However, I had my coffee and pre-blended smoothie, so I kept myself somewhat entertained.
+
+\subsection{CSC 3665}
+Then I had \textit{CSC 3665} from \textbf{12PM - 2PM}. I actually am enrolled in the \textbf{5PM-7PM} section but on Fridays have the availability to go \emph{earlier!} My professor is quite intellectual and speaks in large fluent sentences, but overall great. 
+\subsubsection{the lab}
+He assigned a lab which gave me a bit of fright, but we will get to that.
+
+% noticed I cant get out of the subsubsection environment without a new subsection / section
+\subsection{Driving}
+Now comes the fun part of my Friday! I had booked a concert, \textbf{\textit{5 Seconds of Summer}} for the first Friday of the school year. I saw them earlier this summer too back at home in \texttt{Minnesota}. This was quite the drive (3-4 hours), as it was in \underline{Mountain View, CA}. I got my two friends (for confidentiality, we will call them Mary and Jane), and we started the long trek. See \eqref{eq:time} for a mathematical analysis.
+\subsubsection{In n Out}
+About an hour from the venue, Mary routed us to an \textit{In and Out}. Ironically, it was in the same plaza where I had stopped for a bathroom break for a seperate concert on July 3rd in \textit{Pleasanton, CA}. Completely unintentional but quite funny. I ordered a double double and chocolate \textbf{milkshake}.
+
+\subsection{5 Seconds of Summer}
+This would be my 5th time seeing 5 Seconds of Summer (say that 5 times fast)! It was incredible, I cried so much, lost my voice, and laughed a lot too. Mary and Jane had never seen them and were not prepared for the chaos that unfolded, but by the end, I had them falling in love with my favorite band too.
+
+It ended around 11 and we were on the road home for about another 3.5 ish hours.
+\section{Saturday}
+This drive continued into Saturday, we reached a \textit{Starbucks} right around 12am, \emph{maybe 12:15am}. I was already falling asleep but I kept awake and Mary and Jane kept me talking as to avoid any not good driving mistakes. After dropping them off I went to park my car: \textbf{3:30 AM} had it\dots
+
+\subsection{Post sleepy time}
+I woke up around 2pm, and was ready to start the day. I met up with a friend who I'll call Bret to work on the \texttt{aforementioned lab}. We worked diligently for about 3 hours, and then journeyed to a pseudo-party like event that was an art show from my tattoo artist. I got a delicious burger, enjoyed some music, and \textit{fell asleep} soon after leaving
+
+\section{Sunday}
+I then woke up at \textbf{\textit{7:30am}} for a coffee-meet-up thing with 3 other friends. That was the \emph{\textbf{ONLY}} time that worked for everyone!
+This is getting quite long so I will sum up everything else in bullet points.
+
+\begin{itemize}
+    \item I went and played pool for 2.5 \textbf{HOURS}
+    \item then went to the gym
+    \item then more billiards for another 2.5 \textbf{HOURS}
+    \item and then a large portion of meal prep, laundry, and housekeeping before bed
+\end{itemize}
+\section*{A section of latin!}
+This is an unnumbered section. Playing with paragraph breaks too.
+\bigbreak
+Little did you know, I took latin for 10 years and now I cannot speak a lick of it!\\
+\lipsum[1]
+\section{More Formulas}
+I do not know how to tie an equation into this story, but here is my attempt:
+
+I could calculate my exact time on the way back from the concert using
+
+\begin{equation}
+    T = \frac{D}{S} \label{eq:time}
+\end{equation}
+
+this boils down to 
+\[
+T = \frac{198}{65} \approx 3.046 \text{ h}
+\]
+
+which, If I never stopped driving and always went $65 \, \text{mph}$, would be correct.
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
