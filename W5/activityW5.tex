@@ -1,0 +1,150 @@
+% First we need to tell LaTeX what type of document we'll be writing
+\documentclass{article} %lots of other options here, like amsart, among others
+
+% Preamble:
+
+%Here's where packages go. 
+\usepackage{amsmath} %includes lots of mathematical symbols and content
+\usepackage{lipsum} % For blind text
+\usepackage{fullpage}
+%\usepackage[margin=1in]{geometry}
+%\usepackage{geometry}
+%\geometry{
+%  top=1in,
+%  inner=1in,
+%  outer=1in,
+%  bottom=1in,
+%}
+\usepackage{enumerate}
+\usepackage{array,tabularx,multirow} %Helpful for certain tables and table features
+\usepackage{hyperref}%%Generally hyperref should be the last package loaded. 
+%\hypersetup{
+%    colorlinks=true,
+%    urlcolor=blue,
+%    linkcolor=black
+%}
+
+
+\usepackage[margin=1in]{geometry}
+\usepackage{array}
+\usepackage{multirow}
+\title{Math 3680: Week 5}
+\author{Arjan Singh Ellingson}
+%\date{August 24th, 2026}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+%\tableofcontents
+
+\section{Equations}
+I have taken this problem from a set of linear algebra problems I previously wrote for my textbook development position. However, previously, I did not have it in an equation environment. I may go back and standardize that!
+
+\textbf{Example}: Find a linear combination of 
+$\begin{bmatrix} 2 \\ 1 \\ -3 \end{bmatrix}$ and 
+$\begin{bmatrix} 1 \\ -2 \\ 4 \end{bmatrix}$ 
+that gives the vector 
+$\begin{bmatrix} 17 \\ -4 \\ 2 \end{bmatrix}$.
+
+\textbf{Solution}: We are looking for $a_1$ and $a_2$ such that:
+\begin{equation*}
+a_1 \begin{bmatrix} 2 \\ 1 \\ -3 \end{bmatrix}
++ 
+a_2 \begin{bmatrix} 1 \\ -2 \\ 4 \end{bmatrix}
+=
+\begin{bmatrix} 17 \\ -4 \\ 2 \end{bmatrix}
+\end{equation*}
+
+Looking at each dimension separately, we get the system of equations:
+\begin{align*}
+2a_1 + a_2 &= 17 \\
+a_1 - 2a_2 &= -4 \\
+-3a_1 + 4a_2 &= 2
+\end{align*}
+
+If we can solve this system of equations, we will find $a_1$ and $a_2$. Let's 
+multiply the first equation by 2 and add it to the second equation:
+\begin{align*}
+2\left(2a_1 + a_2\right) + \left(a_1 - 2a_2\right) &= 2(17) + (-4) \\
+4a_1 + 2a_2 + a_1 - 2a_2 &= 34 - 4 \\
+5a_1 &= 30 \\
+a_1 &= 6
+\end{align*}
+
+Now we can take $a_1$ and substitute it back into any equation in our system 
+to find $a_2$. Let's use the third equation:
+\begin{align*}
+-3(6) + 4a_2 &= 2 \\
+-18 + 4a_2 &= 2 \\
+4a_2 &= 20 \\
+a_2 &= 5
+\end{align*}
+
+
+
+\section{Tables}
+
+I had claude make a shortcut for me to create n-sized blocks in my table. A future improvement would be to reduce the amount of \texttt{\\cline} commands needed to make it a more readable and compact table.
+% claude made a shortcut with two params: n 30-minute blocks and a label
+% \block{#1}{#2}
+% #1 = number of 30-min rows to span (e.g. 2 = 1 hour, 4 = 2 hours)
+% #2 = label text
+
+\newcommand{\block}[2]{\multirow{#1}{*}{\shortstack{#2}}}
+
+
+% requires cline at the end of blocks: draws hlines only under provided columns.
+\begin{table}[h]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|>{\centering\arraybackslash}p{1.6cm}|
+                 >{\centering\arraybackslash}p{2.2cm}|
+                 >{\centering\arraybackslash}p{2.2cm}|
+                 >{\centering\arraybackslash}p{2.2cm}|
+                 >{\centering\arraybackslash}p{2.2cm}|
+                 >{\centering\arraybackslash}p{2.2cm}|}
+\hline
+\textbf{Time} & \textbf{Mon} & \textbf{Tue} & \textbf{Wed} & \textbf{Thu} & \textbf{Fri} \\
+\hline
+
+8:00  & \block{4}{CSC 4880\\AI} & \block{4}{CSC 3300\\PL} & \block{4}{CSC 4880\\AI} & \block{4}{CSC 3300\\PL} & \block{4}{CSC 4880\\AI} \\ \cline{1-1}
+8:30  & & & & & \\ \cline{1-1}
+9:00  & & & & & \\ \cline{1-1}
+9:30  & & & & & \\ \hline
+10:00 & & & & & \\ \hline
+
+10:30 & & \block{10}{Redwire \\(Work)} & & \block{10}{Redwire \\(Work)} & \\ \cline{1-2}\cline{4-4}\cline{6-6}
+11:00 & \block{2}{MATH 3680\\\LaTeX} & & & & \\ \cline{1-1}\cline{4-4}\cline{6-6}
+11:30 & & & & & \\ \cline{1-2}\cline{4-4}\cline{6-6}
+
+12:00 & & & & & \\ \cline{1-2}\cline{4-4}\cline{6-6}
+12:30 & & & & & \\ \cline{1-2}\cline{4-4}\cline{6-6}
+
+1:00  & & & & & \\ \cline{1-2}\cline{4-4}\cline{6-6}
+1:30  & \block{6}{CSC 4160\\SE Capstone} & & \block{6}{CSC 4160\\SE Capstone} & & \\ \cline{1-1}\cline{6-6}
+2:00  & & & & & \\ \cline{1-1}\cline{6-6}
+2:30  & & & & & \\ \cline{1-1}\cline{6-6}
+3:00  & & & & & \\ \cline{1-1}\cline{3-3}\cline{5-6}
+3:30  & & & & & \\ \cline{1-1}\cline{3-3}\cline{5-6}
+4:00  & & & & \block{2}{Front Porch \\ Volunteering!!} & \\ \cline{1-4}\cline{6-6}
+
+4:30  & & & & & \\ \hline
+
+5:00  & \block{4}{CSC 3665\\Databases} & & \block{4}{CSC 3665\\Databases} & & \block{4}{CSC 3665\\Databases} \\ \cline{1-2}\cline{3-4}\cline{5-6}
+5:30  & & & & & \\ \cline{1-1}\cline{3-3}\cline{5-5}
+6:00  & & & & & \\ \cline{1-1}\cline{3-3}\cline{5-5}
+6:30  & & & & & \\ \hline
+
+7:00  & & & & & \\ \hline
+7:30  & & & & & \\ \hline
+
+8:00  & & & & & \\ \hline
+
+\end{tabular}
+\caption{Weekly Schedule}
+\end{table}
+
+
+
+\end{document}
