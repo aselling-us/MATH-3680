@@ -1,0 +1,203 @@
+% Your submission should include:
+
+%     One example of a piecewise function/use of the cases environment that is different from the ones provided (tell me about your favorite piecewise function!)
+%     A couple computations using matrices (e.g. sum of two matrices) and a product of two appropriately-sized but nonsquare matrices
+%     Make three custom commands that will be useful to you in the future and demonstrate their use in context (that is, don't just write the code to typeset it. Tell me what is going on!)
+
+% Upload both the .tex file and the PDF of your output. 
+
+\documentclass{article} %lots of other options here, like amsart, among others
+\usepackage{amsmath} %for cases environment and other math features
+
+\usepackage{enumerate}
+\usepackage{array,tabularx,multirow} %Helpful for certain tables and table features
+\usepackage{hyperref}%%Generally hyperref should be the last package loaded. 
+\usepackage{mdframed} % added for custom command creation
+\usepackage{graphicx} % for including images
+\usepackage{float} % provides the H figure placement option
+\title{Math 3680: Week 6}
+\author{Arjan Singh Ellingson}
+%\date{August 24th, 2026}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+% for reference
+% \newcommand{\Z}{\mathbb{Z}}
+% \newcommand{\twobytwo}[4]{\begin{bmatrix} #1 & #2 \\ #3 & #4 \end{bmatrix}}
+
+\section{Piecewise functions with Cases}
+Here is a piecewise function with three cases ranging on the domain ([-5, 5]).
+\begin{equation*}
+    f(x) =
+    \begin{cases}
+        x + 2 & \text{if } -5 \le x < -1  \\
+        x^2   & \text{if } -1 \le x \le 2 \\
+        3 - x & \text{if } 2 < x \le 5
+    \end{cases}
+\end{equation*}
+
+
+Here is a table of values to go along with it!
+
+\begin{center}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}\hline
+        $x$    & $-5$ & $-4$ & $-3$ & $-2$ & $-1$ & $0$ & $1$ & $2$ & $3$ & $4$  & $5$  \\
+        \hline
+        $f(x)$ & $-3$ & $-2$ & $-1$ & $0$  & $1$  & $0$ & $1$ & $4$ & $0$ & $-1$ & $-2$ \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\section{Matrix multiplication}
+I have a million of these in my notes preformatted in obsidian-based \LaTeX. 
+
+Here is an expanded version of the cross product formula:
+\[
+\mathbf{a}\times\mathbf{b}
+=
+\begin{vmatrix}
+\mathbf{i} & \mathbf{j} & \mathbf{k}\\
+a_1 & a_2 & a_3\\
+b_1 & b_2 & b_3
+\end{vmatrix}
+\;=\;
+\Bigl\langle
+\,a_2b_3-a_3b_2,\;
+a_3b_1-a_1b_3,\;
+a_1b_2-a_2b_1
+\Bigr\rangle
+\]
+
+This is the basic structure for matrix addition:
+\begin{align*}
+    &\begin{bmatrix}
+        x_{11} & x_{12} & x_{13} & \cdots & x_{1n}\\
+        x_{21} & x_{22} & x_{23} & \cdots & \vdots\\
+        \vdots & \vdots & \vdots & \cdots & \vdots\\
+        x_{m1} & x_{m2} & x_{m3} & \cdots & x_{mn}
+    \end{bmatrix}\\
+    +\;&\begin{bmatrix}
+        y_{11} & y_{12} & y_{13} & \cdots & y_{1n}\\
+        y_{21} & y_{22} & y_{23} & \cdots & \vdots\\
+        \vdots & \vdots & \vdots & \cdots & \vdots\\
+        y_{m1} & y_{m2} & y_{m3} & \cdots & y_{mn}
+    \end{bmatrix}\\
+    =\;&\begin{bmatrix}
+        x_{11} + y_{11} & x_{12} + y_{12} & x_{13} + y_{13} & \cdots & x_{1n} + y_{1n}\\
+        x_{21} + y_{21} & x_{22} + y_{22} & x_{23} + y_{23} & \cdots & \vdots\\
+        \vdots & \vdots & \vdots & \cdots & \vdots\\
+        x_{m1} + y_{m1} & x_{m2} + y_{m2} & x_{m3} + y_{m3} & \cdots & x_{mn} + y_{mn}
+    \end{bmatrix}
+\end{align*}
+
+And here is a matrix problem from my notes that results in two cases (used for eigen solving).
+\[
+    \begin{bmatrix}
+        -1 & 2 \\
+        2 & -4
+    \end{bmatrix}
+    \begin{bmatrix}
+        x_1 \\ x_2
+    \end{bmatrix}
+    = 
+    \begin{bmatrix}
+        0 \\ 0
+    \end{bmatrix}
+    \Rightarrow
+    \begin{cases}
+    - x_1 + 2x_2 = 0 \\
+    2x_1 - 4x_2 = 0
+    \end{cases}
+\]
+\section{Custom commands}
+This can be super useful to me because I have not actually defined custom commands in my work repository, etc.
+
+\subsection{Mdframed definition improvements}
+Looking at a lot of the repeated code in my workbooks, here are a few I might implement in the future:
+The \texttt{\\begin\{mdframed\}} is used 300+ times in my notes/work repository, 
+An example being the definition of varience in statistics:
+
+    \begin{mdframed}[style=important, frametitle={Definition of Variance}]
+
+    If you have $n$ samples $x_1, x_2, \ldots, x_n$ that have a mean of $\mu$, the \textit{variance} is defined to be:\index{variance}
+
+    $$v = \frac{1}{n}\sum_{i = 1}^{n} \left(x_i - \mu\right)^2$$
+    % ADD: Maybe connect to Chi-squared test
+    \end{mdframed}
+
+    A new command could be defined as 
+    % Define a new environment for important definitions using mdframed, with one input as the title
+    \newenvironment{definitionbox}[1]{\begin{mdframed}[style=important,frametitle={#1}]}{\end{mdframed}}
+
+    \texttt{\textbackslash newenvironment\{definitionbox\}[1]\{\textbackslash begin\{mdframed\}[style=important,frametitle=\{\#1\}]\}\{\textbackslash end\{mdframed\}\}}
+
+    To call this new environment, you would use:
+    \begin{definitionbox}{Definition of Mean}
+    If you have $n$ samples $x_1, x_2, \ldots, x_n$ that have a mean of $\mu$, the \textit{variance} is defined to be:\index{variance}
+
+    $$v = \frac{1}{n}\sum_{i = 1}^{n} \left(x_i - \mu\right)^2$$
+    % ADD: Maybe connect to Chi-squared test
+    \end{definitionbox}
+
+    It is not too much improvement but It allows for more readability and consistency when updating. 
+
+    \subsection{Figure Improvements}
+    A second case of bulk command use would be helpful is the images that we insert into the book.
+
+    Each image is inserted into a figure environment, such as
+
+    % \begin{figure}[H]
+    %     \centering
+    %     \includegraphics[width=0.5\textwidth]{balloon.png}
+    %     \caption{Air pushes both ways on a balloon.}
+    %     \label{fig:balloon}
+    % \end{figure}
+
+    \texttt{\% \textbackslash begin\{figure\}[H]}\\
+    \texttt{\%     \textbackslash centering}\\
+    \texttt{\%     \textbackslash includegraphics[width=0.5\textbackslash textwidth]\{balloon.png\}}\\
+    \texttt{\%     \textbackslash caption\{Air pushes both ways on a balloon.\}}\\
+    \texttt{\%     \textbackslash label\{fig:balloon\}}\\
+    \texttt{\% \textbackslash end\{figure\}}\\
+
+
+    The things that change here are the image file, the image width, the caption, and the label. This could be a four input custom command for figures.
+    Potentially, what I am looking at is:
+
+    \newcommand{\bookfigure}[4][0.75]{%
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=#1\textwidth]{#2}
+            \caption{#3}
+            \label{fig:#4}
+        \end{figure}
+    }
+
+    \texttt{\textbackslash newcommand\{\textbackslash bookfigure\}[4][0.75]\%}
+    \texttt{\{\%}
+    \texttt{\textbackslash begin\{figure\}[H]}
+    \texttt{\textbackslash centering}
+    \texttt{\textbackslash includegraphics[width=\#1\textbackslash textwidth]\{\#2\}}
+    \texttt{\textbackslash caption\{\#3\}}
+    \texttt{\textbackslash label\{fig:\#4\}}
+    \texttt{\textbackslash end\{figure\}}
+    \texttt{\%\}}
+
+
+    \subsection{A math command}
+    This one is a small one for in line one-line vectors (x, y) generally:
+
+    \texttt{\textbackslash newcommand\{\textbackslash vecb\}[1]\{\textbackslash begin\{bmatrix\} \#1 \textbackslash end\{bmatrix\}\}}
+
+
+    \newcommand{\vecb}[1]{\begin{bmatrix} #1 \end{bmatrix}}
+    
+    this can be done here as:
+    \[
+    a_1 \vecb{1 \\ 2} + a_2 \vecb{-3 \\ 1} = \vecb{4 \\ 5}
+    \]
+
+    \end{document}
