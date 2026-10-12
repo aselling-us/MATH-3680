@@ -1,0 +1,108 @@
+% First we need to tell LaTeX what type of document we'll be writing
+\documentclass{article} %lots of other options here, like amsart, among others
+
+% Preamble:
+
+%Here's where packages go. 
+\usepackage{amsmath} %includes lots of mathematical symbols and content
+\usepackage{lipsum} % For blind text
+\usepackage{fullpage}
+%\usepackage[margin=1in]{geometry}
+%\usepackage{geometry}
+%\geometry{
+%  top=1in,
+%  inner=1in,
+%  outer=1in,
+%  bottom=1in,
+%}
+\usepackage{enumerate}
+\usepackage{array,tabularx,multirow} %Helpful for certain tables and table features
+\usepackage{graphicx}
+\graphicspath{ {./Images/} }
+\usepackage{wrapfig}
+\usepackage{animate} % this is for the newly learned animated package
+\usepackage{hyperref}%%Generally hyperref should be the last package loaded. 
+%\hypersetup{
+%    colorlinks=true,
+%    urlcolor=blue,
+%    linkcolor=black
+%}
+
+% To make typesetting augmented matrices easier. Code taken from
+% https://tex.stackexchange.com/questions/2233/whats-the-best-way-make-an-augmented-coefficient-matrix 
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+%%Custom Commands
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\twobytwo}[4]{\begin{bmatrix} #1 & #2 \\ #3 & #4 \end{bmatrix}}
+
+\title{Math 3680: Week 8}
+\author{Arjan Singh Ellingson}
+%\date{August 24th, 2026}
+\date{\today}
+\begin{document}
+\maketitle
+%\tableofcontents
+
+% Today we are doing wrap figures, wrapping tables
+
+
+%  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut luctus sed leo quis consectetur. Cras fringilla pellentesque sollicitudin. In hac habitasse platea dictumst. Cras sodales blandit congue. Donec volutpat erat nec neque blandit vulputate. Suspendisse at lorem vel nunc rhoncus vestibulum et ut turpis. Sed molestie purus ac elit bibendum, nec facilisis odio lacinia. Vestibulum euismod, felis vitae blandit tincidunt, libero lectus consectetur velit, ultricies eleifend sapien mauris at nulla. Duis vitae lorem ac felis tincidunt sollicitudin at sed lectus. Ut et odio lacinia erat mattis porta in vitae enim. Duis varius diam et nunc finibus, at ornare felis molestie. Phasellus porttitor hendrerit libero quis lobortis. Etiam urna purus, commodo eu felis vel, imperdiet placerat felis. Proin cursus tellus ultrices tortor aliquet, convallis euismod odio tincidunt.
+
+% Ut arcu ante, dictum sed malesuada vel, porta nec risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam scelerisque in tellus eget dignissim. Pellentesque consequat ac sapien facilisis tristique. Praesent semper ultrices dolor, eu hendrerit risus vulputate id. Suspendisse sit amet neque libero. Ut condimentum nisi odio, eget semper velit maximus a. Vivamus venenatis lectus sodales placerat accumsan. Vivamus imperdiet, arcu a euismod pretium, metus nunc ullamcorper quam, a hendrerit felis felis ac libero. Fusce pharetra tempor ante.
+
+% % r could be r, O, or l (right, outer, left)
+
+Just some dummy text around my wrap figure to play with the positioning.
+\begin{wrapfigure}{o}{0.65\textwidth} % .5 is .5 f the entire page
+\begin{center}
+    \includegraphics[width=0.55\textwidth]{birbs.jpg} % .3 is 30% of the text width total, not just in the block
+\end{center}
+  \caption{Some birds I saw this weekend!}
+\end{wrapfigure}
+\lipsum[1-6]
+
+\newpage
+
+I then took a live photo that I had from a concert this summer and used \href{https://ezgif.com/video-to-jpg}{EZGif} to convert the apple live photo (not my favorite feature ever) to a gif. It is only 12 frames but pretty sick!
+
+\animategraphics[loop,autoplay,width=\textwidth]{15}{ezgif-frame-}{001}{012} \\
+
+% Phasellus maximus massa et ultrices luctus. Donec elementum, nibh sit amet porttitor faucibus, lacus dolor lobortis nibh, et malesuada ligula augue ac massa. Nunc consectetur, nisl eget ultricies suscipit, mauris metus tincidunt tellus, non ornare dolor enim a sapien. Nam lectus elit, mollis non maximus eu, eleifend at arcu. Vestibulum elementum erat enim, sit amet congue urna rhoncus at. Curabitur at tellus cursus, mattis urna vel, faucibus quam. Suspendisse volutpat imperdiet tellus in laoreet. Mauris urna dolor, mattis quis elementum eget, tincidunt vitae velit. Nam scelerisque at metus non ultricies. Cras facilisis lacus vel porttitor tristique. Pellentesque et feugiat tellus. Sed dapibus fringilla ultricies. Aliquam pulvinar purus vitae ultrices venenatis. Sed lectus eros, volutpat in faucibus sed, commodo nec nibh. Nunc lacus ex, dignissim ut quam vitae, ornare vulputate ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+% Vestibulum ut sem eu ante consequat commodo in eu lorem. Vestibulum vitae turpis velit. Nulla gravida vitae tortor sit amet rhoncus. Integer finibus dolor nec tincidunt elementum. Nulla blandit elit pharetra eleifend consequat. Ut condimentum, libero in tempus dapibus, turpis nisi tempus neque, at ultrices sem enim vel massa. Praesent sagittis justo non enim egestas, sit amet malesuada lectus gravida. Nulla lorem risus, commodo sit amet magna ut, efficitur placerat eros. Nullam placerat metus imperdiet, condimentum ante in, facilisis libero. Duis tempus laoreet sapien, nec rutrum libero euismod in. Pellentesque cursus dignissim tortor tempor egestas. Curabitur ornare leo urna.
+
+% Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. In commodo, risus eu auctor efficitur, felis ex aliquam sem, non pretium mauris leo nec ex. Aliquam varius laoreet pellentesque. Interdum et malesuada fames ac ante ipsum primis in faucibus. Fusce rutrum auctor justo, a condimentum tortor tempor ut. Etiam mauris arcu, consequat et augue ut, accumsan ornare nibh. Maecenas quis nulla nunc. 
+
+
+
+% \begin{wraptable}{r}{8cm}
+% \centering
+% \begin{tabular}{|c|c|}
+% \hline
+% \textbf{Time} & \textbf{Monday} \\ \hline
+% 9:00 AM &   \\ \hline
+% 10:00 AM & \\ \hline
+% 11:00 AM
+% & MATH 3680--S01 \\ \hline
+% 12:00 PM & MATH 1262--S12 \\ \hline
+% 1:00 PM & \\ \hline
+% 2:00 PM & Office Hours \\ \hline
+% 3:00 PM
+% & Office Hours \\ \hline
+% 4:00 PM & \\ \hline
+% 5:00 PM & \\ \hline
+% \end{tabular}
+% \caption{Table inside a wraptable: Here's my Monday schedule and I'm typing a lot more to make caption text wrap automatically}
+% \label{table:ta2}
+% \end{wraptable}
+
+% % file names must all match except for the ending suffix frame number
+% \animategraphics[loop,autoplay,width=\textwidth]{15}{frame-}{001}{024} \\
+
+\end{document}
