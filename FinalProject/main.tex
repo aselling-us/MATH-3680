@@ -14,6 +14,7 @@
 \usepackage{array,tabularx,multirow} %Helpful for certain tables and table features
 \usepackage{graphicx}
 \graphicspath{ {./Images/} }
+\usepackage{mermaid}
 \usepackage{wrapfig}
 % \usepackage{animate} % this is for the newly learned animated package
 \usepackage{xcolor} % Required for color names
@@ -38,7 +39,7 @@
 \renewcommand{\cftaftertoctitle}{\hfill} % Required for centering
 \renewcommand{\cftsecfont}{\bfseries} % Section titles bold
 \renewcommand{\cftsecpagefont}{\bfseries} % Section page numbers bold
-\renewcommand{\cftsubsecfont}{\itshape} % Subsection titles italic
+\renewcommand{\cftsubsecfont}{\itshape\/} % Subsection titles italic
 
 % Begin Cover Page
 \title{Math 3680 — Final Project \\
@@ -56,8 +57,8 @@ Introduction to Database Management Systems}}
 \newpage
 % seperates every section into its own file. All TOC and preamble stay in main
 \input{sections/01-Basic-Relational-Algebra.tex}
-
-\section{Entity-Relationship Diagrams}
+\input{sections/02-Entity-Relationship-Diagrams.tex}
+\input{sections/03-Normalization.tex}
 \section{Basic SQL Statements}
 \section{Advanced Relational Algebra}
 \section{From English To SQL to Rel. Alg.}

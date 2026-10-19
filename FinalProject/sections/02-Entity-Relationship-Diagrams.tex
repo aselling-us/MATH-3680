@@ -1,0 +1,31 @@
+\section{ER Diagrams}
+This section taught the basics of \newterm{entity-relationship diagrams} (\index{ER Diagrams|see{Entity-Relationship Diagrams}}) and how to use them to model a database.
+
+Not only did we learn how to diagram, but also Lab 2 emphasized coding our own, which was done in the programming language \newterm{mermaid}, which fits directly into LaTeX. 
+
+Below is a simple example of 3 different types of relationships, one-to-one, one-to-many, and many-to-many.
+% requires the mermaid package to be included in the preamble of main.tex
+% and to be compiled with lualatex or xelatex, not pdflatex.
+% needs shell escape
+\begin{mermaid}
+erDiagram
+    %% One-to-one
+    PERSON ||--|| PASSPORT : "has (one to one)"
+
+    %% One-to-many
+    DEPARTMENT ||--o{ EMPLOYEE : "employs (one to many)"
+
+    %% Many-to-many
+    STUDENT {
+        int student_id PK
+        string name
+        string email
+    }
+    COURSE {
+        int course_id PK
+        string title
+    }
+    STUDENT }o--o{ COURSE : "enrolls_in (zero or many to zero or many)"
+\end{mermaid}
+
+Note that the symbols next to a node $A$ represent how many of $A$ can be in $B$. For example, a department has many or zero employees, but an employee must have exactly one department.
