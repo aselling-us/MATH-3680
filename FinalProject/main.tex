@@ -1,0 +1,70 @@
+
+% Preamble:
+
+%Here's where packages go. 
+
+\documentclass{article} %lots of other options here, like amsart, among others
+\usepackage{amsmath} %includes lots of mathematical symbols and content
+\usepackage{lipsum} % For blind text
+\usepackage{fullpage}
+\usepackage{imakeidx} %make index
+\makeindex[title=Index of Terms, columns=3, columnsep=20pt, intoc]
+
+\usepackage{enumerate}
+\usepackage{array,tabularx,multirow} %Helpful for certain tables and table features
+\usepackage{graphicx}
+\graphicspath{ {./Images/} }
+\usepackage{wrapfig}
+% \usepackage{animate} % this is for the newly learned animated package
+\usepackage{xcolor} % Required for color names
+\definecolor{linkblue}{HTML}{56B7E6}
+\usepackage{hyperref}%%Generally hyperref should be the last package loaded.
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=linkblue,   % TOC entries, TOC/index page numbers, internal refs
+    urlcolor=linkblue,    % external URLs
+    citecolor=linkblue,
+    linktoc=page          % make page nums clicable
+}
+
+% italicize new terms, and add them to the index
+\newcommand{\newterm}[1]{\textit{#1}\index{#1}}
+
+% TOC edits - nonstandard
+\usepackage{tocloft}
+\renewcommand{\contentsname}{Table of Contents} % Change title text
+\renewcommand{\cfttoctitlefont}{\hfill\Large\bfseries} % Center and style title
+\renewcommand{\cftaftertoctitle}{\hfill} % Required for centering
+\renewcommand{\cftsecfont}{\bfseries} % Section titles bold
+\renewcommand{\cftsecpagefont}{\bfseries} % Section page numbers bold
+\renewcommand{\cftsubsecfont}{\itshape} % Subsection titles italic
+
+% Begin Cover Page
+\title{Math 3680 — Final Project \\
+\large {A Typeset Document of Notes from CSC 3665 — \\
+Introduction to Database Management Systems}}
+\author{Arjan Singh Ellingson}
+%\date{August 24th, 2026}
+\date{\today}
+\begin{document}
+\newpage
+\maketitle
+% FIXME attempt to place toc here, move to new page if not possible
+\tableofcontents
+
+\newpage
+% seperates every section into its own file. All TOC and preamble stay in main
+\input{sections/01-Basic-Relational-Algebra.tex}
+
+\section{Entity-Relationship Diagrams}
+\section{Basic SQL Statements}
+\section{Advanced Relational Algebra}
+\section{From English To SQL to Rel. Alg.}
+\section{External Content Referenced}
+Here is where I wanted to link any external resources I used to help in learning the material outside of Cal Poly IP. 
+
+
+\newpage
+\printindex
+\end{document}

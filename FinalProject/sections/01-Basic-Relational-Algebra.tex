@@ -1,0 +1,42 @@
+
+\section{Basic Relation Algebra}
+
+The class started with very basic relational algebra, expanding on set theory and cardinality discussed in CSC 248 (now MATH 2031).
+ 
+\subsection{Relational Data Model}
+
+\begin{itemize}
+    \item \newterm{Tuple}: A list of grouped-together attributes. Synonymous to row/record. 
+    \item \newterm{Attributes}: A list of columns, all values that a single fields can be. 
+    \item \newterm{Relation}: A set of data organized as tuples. The entire table is the relation.
+    \item \newterm{Key}: an attribute (column) that can uniquely identify rows so that relationships can be established between tables. Selection process goes (generally)
+    \[
+    \begin{aligned}
+    \text{super keys} &\supseteq \text{candidate keys} \\
+    &\supseteq (\text{one chosen as}) \supseteq \text{primary key} \\
+    &\supseteq (\text{candidate keys} - \text{primary key}) = \text{alternate key}
+    \end{aligned}
+    \]
+    \item \newterm{Super Key}: Attributes that can uniquely identify tuples. May include extraneous values.
+    \item \newterm{Candidate Key}: A minimal super key that can identify a row uniquely. There may be many; rows that are not chosen are called \newterm{alternate keys}\index{alternate keys|see{Candidate Key}}.
+    \item \newterm{Primary Key}: a chosen unique non-null candidate key to identify rows.
+    \item \newterm{Foreign Key}: A shared value / column between two tables that allows linking of tables. For example, 
+    \[S_1=\{StudentID, \,Dept, \, Credits\}\] \[S_{2}= \{Dept\_{ID}, Dept\_Name\}\]
+    \item \newterm{Composite Key}: A set of 2+ attributes that can together uniquely identify a tuple.
+    \item \newterm{Natural Key}: A key coded with real world meaning, such as an email
+    \item \newterm{Surrogate Key}: A key with no real world value. Created only for identification purpose, often a UUID or hex code.
+\end{itemize}
+
+\subsection{Relational Algebra}
+
+Given two schemas $R$ and $S$
+\begin{itemize}
+    \item $R \cup S$: What will the table look like with data from both? Note, schemas must match, there will be more columns.
+    \item $R \cap S$: What tuples are in both? Note, schemas must match. 
+    \item $R - S$: What is in $R$ but not $S$?
+    \item $R \times S$: Every possible tuple of $R$ paired with every tuple of $S$
+    \item $\sigma_{c}\,(R)$: Show only rows of R satisfying condition $c$
+    \item $\pi_{(A)}\,(R)$: Picks columns $A$ and removes any duplicate values.
+    \item $R \bowtie S$: adds more columns based on at lease one shared attribute. This makes the schema larger.
+    \item $R \bowtie_{\theta}S= \sigma_\theta\,(R\times S)$ tuples that satisfy $\theta$.
+\end{itemize}
