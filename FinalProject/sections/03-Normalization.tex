@@ -1,28 +1,27 @@
-% \chapter{Advanced SQL and Database Management}
+\section{Normalization}
 
-% If you recall from our basic SQL chapters, we have the ability to create sets of rows and columns that represent data. We can represent a set of 1000 bikes, each with a respective price, status, brand, and id, in the form of rows (you may hear the term tuples) and columns (attributes). In this chapter, we will build out a larger database, with more than one table, but, here's the twist: we will find a way to link them together, so that data can be searched across tables. 
+% Parts of this are taken from my work repository that I made in union for this final project as well as review for my class itself.
+% see : https://kontinuafoundation.github.io/sql_2.pdf
 
 
-% \section{Keys}
-% In the experimentation from our first chapter, you may have seen the term \newterm{primary key}. An attribute (or set of attributes) that can uniquely identify rows within a table are called a primary key. That may have just sounded like a set of buzzwords, so let's take a step back:
 
-% Take for example the following table:
-% \begin{table}[h]
-% \centering
-% \begin{tabular}{|c|c|c|c|c|c|}
-% \hline
-% \textbf{StudentID} & \textbf{Email} & \textbf{SSN} & FirstName & LastName & EnrollmentDate \\
-% \hline
-% 1001 & \textsf{alice@univ.edu} & 123-45-6789 & Alice & Smith & 2024-01-15 \\
-% \hline
-% 1002 & \textsf{bob@univ.edu} & 987-65-4321 & Bob & Johnson & 2024-01-15 \\
-% \hline
-% 1003 & \textsf{carol@univ.edu} & 555-55-5555 & Carol & Williams & 2024-02-01 \\
-% \hline
-% \end{tabular}
-% \caption{STUDENT table demonstrating key types.}
-% \label{tab:keys}
-% \end{table}
+Take for example the following table:
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+\textbf{StudentID} & \textbf{Email} & \textbf{SSN} & FirstName & LastName & EnrollmentDate \\
+\hline
+1001 & \textsf{alice@univ.edu} & 123-45-6789 & Alice & Smith & 2024-01-15 \\
+\hline
+1002 & \textsf{bob@univ.edu} & 987-65-4321 & Bob & Johnson & 2024-01-15 \\
+\hline
+1003 & \textsf{carol@univ.edu} & 555-55-5555 & Carol & Williams & 2024-02-01 \\
+\hline
+\end{tabular}
+\caption{STUDENT table demonstrating key types.}
+\label{tab:keys}
+\end{table}
 
 % We can identify columns or combinations of columns that could be used to uniquely identify each row. We can identify pretty much infinite \newterm{super keys}, which are any set of attributes that uniquely identifies a row. What sets these apart is that they may include extraneous attributes that are not required for uniqueness. For example, in the STUDENT table, both \{StudentID\} and \{StudentID, Email\} are super keys, but the latter includes an unnecessary attribute for uniqueness. Keys that contain more than one attribute are called \newterm{composite keys}, and are represented in sequence with parentheses such as (StudentID, Email).
 

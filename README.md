@@ -19,7 +19,7 @@ I have written a custom alias `lmake` on my laptop. lmake compiled in the termin
 
 **Week 8:** Oct. 12 — Pictures & graphics (advanced)
 
-**Week 9:** Oct. 19 — Diagrams: XY-Pic and TikZ
+**Week 9:** Oct. 19 — Resume generation (done previously in different repository)
 
 **Week 10:** Oct. 26 — Diagrams: XY-Pic and TikZ (continued)
 
