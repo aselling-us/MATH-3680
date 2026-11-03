@@ -1,0 +1,262 @@
+% header copied from final project 
+% Preamble:
+
+%Here's where packages go. 
+
+\documentclass{article} %lots of other options here, like amsart, among others
+\usepackage{amsmath} %includes lots of mathematical symbols and content
+\usepackage{fullpage}
+\usepackage{imakeidx} %make index
+\usepackage{float}
+\makeindex[title=Index of Terms, columns=3, columnsep=20pt, intoc]
+
+\usepackage{enumerate}
+\usepackage{array,tabularx,multirow} %Helpful for certain tables and table features
+\usepackage{graphicx}
+\graphicspath{ {./Images/} }
+\usepackage{wrapfig}
+% \usepackage{animate} % this is for the newly learned animated package
+\usepackage{xcolor} % Required for color names
+\definecolor{linkblue}{HTML}{56B7E6}
+\usepackage{hyperref}%%Generally hyperref should be the last package loaded.
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage[all]{xypic}
+\usepackage{tikz}
+\usetikzlibrary{calc,patterns,angles,quotes,graphs,graphs.standard,arrows.meta,positioning,fit} % useful set of TikZ libraries for various diagram elements
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=linkblue,   % TOC entries, TOC/index page numbers, internal refs
+    urlcolor=linkblue,    % external URLs
+    citecolor=linkblue,
+    linktoc=page          % make page nums clicable
+}
+
+\definecolor{rcrcrf}{rgb}{0.10980392156862745,0.10980392156862745,0.12156862745098039}
+\definecolor{ududff}{rgb}{0.30196078431372547,0.30196078431372547,1}
+\definecolor{xdxdff}{rgb}{0.49019607843137253,0.49019607843137253,1}
+\definecolor{wewdxt}{rgb}{0.43137254901960786,0.42745098039215684,0.45098039215686275}
+
+% italicize new terms, and add them to the index
+\newcommand{\newterm}[1]{\textit{#1}\index{#1}}
+
+% TOC edits - nonstandard
+\usepackage{tocloft}
+\renewcommand{\contentsname}{Table of Contents} % Change title text
+\renewcommand{\cfttoctitlefont}{\hfill\Large\bfseries} % Center and style title
+\renewcommand{\cftaftertoctitle}{\hfill} % Required for centering
+\renewcommand{\cftsecfont}{\bfseries} % Section titles bold
+\renewcommand{\cftsecpagefont}{\bfseries} % Section page numbers bold
+\renewcommand{\cftsubsecfont}{\itshape\/} % Subsection titles italic
+
+\DeclareMathOperator{\Ker}{\text{Ker}}
+\DeclareMathOperator{\Coker}{\text{coker}}
+% Begin Cover Page
+\title{Week 11 — TikZ Diagrams}
+\author{Arjan Singh Ellingson}
+%\date{August 24th, 2026}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+% from AI summary
+% • Cells: Objects are separated by & and line breaks are marked with \\.
+% • Arrows: Created with \ar[direction] where directions can be l (left), r (right), u (up), d (down), or combinations like dr (down-right).
+% • Labels: Use standard math superscripts (^) for labels above/on the arrow and subscripts (_) for labels below.
+% • Curved arrows: Add /^/.../ or /_/.../ (e.g., \ar@/^/[r])
+\section{XYPic diagrams}
+These are some gaussian elimination steps from my notes converted to xypic.
+\[
+\xymatrix@C=4.5em{
+  {\begin{bmatrix}
+    1 & 2 & 4 & -4 \\
+    5 & 11 & -21 & -22 \\
+    3 & -2 & 3 & 11
+  \end{bmatrix}}
+  \ar[r]^-{\substack{R_2 \leftarrow R_2 - 5R_1 \\ R_3 \leftarrow R_3 - 3R_1}} &
+  {\begin{bmatrix}
+    1 & 2 & 4 & -4 \\
+    0 & 1 & -41 & -2 \\
+    0 & -8 & -9 & 23
+  \end{bmatrix}}
+  \ar[r]^-{R_3 \leftarrow 8R_2 + R_3} &
+  {\begin{bmatrix}
+    1 & 2 & 4 & -4 \\
+    0 & 1 & -41 & -2 \\
+    0 & 0 & -337 & 7
+  \end{bmatrix}}
+}
+\]
+
+I attempted to do a binary tree in xypic. Not the prettiest way to code a tree, but it outputs...
+\[
+\xymatrix{
+    &   & A \ar[dl] \ar[dr] & & \\
+    &   B \ar[dr] \ar[dl]&                 & C \ar[dl] \ar[dr] & \\
+    M                 & & D                     & & F
+}
+\]
+\section{Snake Lemma 1}
+\xymatrix@C=4em@R=4em{
+  & A \ar[r]^{f} \ar[d]^{\alpha} & B \ar[r]^{g} \ar[d]^{\beta} & C \ar[r] \ar[d]^{\gamma}& 0 \\
+0 \ar[r]  & A' \ar[r]_{f'} & B' \ar[r]_{g'} & C' & }
+
+\section{Snake Lemma 2}
+% had to mess with spacing and num of cells
+is there a way to say "every right arrow on this line should be blue"?
+\begin{center}
+  \[
+  \xymatrix@C=3.5em@R=4em{
+  0 \ar@[red][r] & \Ker f \ar@[red][r] & \Ker \alpha \ar@[red][r] \ar[d] & \Ker \beta  \ar@[red][r] \ar[d] & \Ker \gamma \ar[d] \ar@[red]@/^1.5pc/[dddll]|{s}  \\
+  & & A \ar@[blue][r]^{\color{blue} f} \ar@[blue][d]^{\color{blue} \alpha} & B \ar@[blue][r]^{\color{blue} g} \ar@[blue][d]^{\color{blue} \beta} & C \ar@[blue][r] \ar@[blue][d]^{\color{blue} \gamma}& 0 \\
+  & 0 \ar@[blue][r] & A' \ar@[blue][r]^{\color{blue} f'} \ar[d] & B' \ar@[blue][r]^{ \color{blue} g'} \ar[d] & C' \ar[d] & \\
+  &  & \Coker \alpha  \ar@[red][r] & \Coker \beta  \ar@[red][r] & \Coker \gamma  \ar@[red][r] & \Coker g'  \ar@[red][r] & 0 \\ 
+  }
+  \]
+\end{center}
+I do not think the snake lemma drawing is possible in xypic with that entry/exit curve, at least I was not able to figure out how to do it. 
+
+\section{Mathcha and TikZ}
+I am here trying to do it in tikz, exported from Mathcha. I used a spline to create the curved arrow, which I could not figure out in xypic.
+
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,372); %set diagram left start at 0, and has height of 372
+
+% Text Node
+\draw (268.23,111.2) node  [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,opacity=1 ]  {$f$};
+% Text Node
+\draw (376.23,112.2) node  [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,opacity=1 ]  {$g$};
+% Text Node
+\draw (270.23,217.2) node  [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,opacity=1 ]  {$f'$};
+% Text Node
+\draw (377.23,220.2) node  [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,opacity=1 ]  {$f'$};
+% Text Node
+\draw (448.23,163.2) node  [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,opacity=1 ]  {$\gamma $};
+% Text Node
+\draw (337.23,174.2) node  [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,opacity=1 ]  {$\beta $};
+% Text Node
+\draw (228.23,162.2) node  [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,opacity=1 ]  {$\alpha $};
+% Text Node
+\draw (25.22,46.6) node   [align=left] {$\displaystyle 0$};
+% Text Node
+\draw (110.95,45.6) node   [align=left] {$\displaystyle \ker \ f\ $};
+% Text Node
+\draw (218.51,45.6) node   [align=left] {$\displaystyle \ker \ \alpha \ $};
+% Text Node
+\draw (325.42,45.6) node   [align=left] {$\displaystyle \ker \ \beta \ $};
+% Text Node
+\draw (435.1,44.6) node   [align=left] {$\displaystyle \ker \ \gamma \ $};
+% Text Node
+\draw (211.01,116.58) node [anchor=north west][inner sep=0.75pt]    {$A$};
+% Text Node
+\draw (319.42,117.58) node [anchor=north west][inner sep=0.75pt]    {$B$};
+% Text Node
+\draw (428.1,116.58) node [anchor=north west][inner sep=0.75pt]    {$C$};
+% Text Node
+\draw (545.83,124.18) node   [align=left] {$\displaystyle 0$};
+% Text Node
+\draw (125.95,203.68) node   [align=left] {$\displaystyle 0$};
+% Text Node
+\draw (209.68,196.08) node [anchor=north west][inner sep=0.75pt]    {$A'$};
+% Text Node
+\draw (316.92,196.08) node [anchor=north west][inner sep=0.75pt]    {$B'$};
+% Text Node
+\draw (426.1,196.08) node [anchor=north west][inner sep=0.75pt]    {$C'$};
+% Text Node
+\draw (219.18,271.85) node    {$\text{coker} \ \alpha $};
+% Text Node
+\draw (325.42,271.85) node    {$\text{coker} \ \beta $};
+% Text Node
+\draw (435.1,271.85) node    {$\text{coker} \ \gamma $};
+% Text Node
+\draw (545.83,271.85) node    {$\text{coker} \ g'$};
+% Text Node
+\draw (641.32,271.85) node   [align=left] {$\displaystyle 0$};
+% Text Node
+\draw (293.23,170.2) node  [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ]  {$s$};
+% Connection
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ]   (33.72,46.5) -- (83.95,45.91) ;
+\draw [shift={(85.95,45.89)}, rotate = 179.33] [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+% Connection
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ]   (135.95,45.6) -- (191.01,45.6) ;
+\draw [shift={(193.01,45.6)}, rotate = 180] [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+% Connection
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ]   (244.01,45.6) -- (298.92,45.6) ;
+\draw [shift={(300.92,45.6)}, rotate = 180] [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+% Connection
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ]   (349.92,45.38) -- (407.6,44.85) ;
+\draw [shift={(409.6,44.83)}, rotate = 179.48] [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+% Connection
+\draw    (218.51,58.6) -- (218.51,110.18) ;
+\draw [shift={(218.51,112.18)}, rotate = 270] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+% Connection
+\draw    (325.42,58.6) -- (325.42,111.18) ;
+\draw [shift={(325.42,113.18)}, rotate = 270] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+% Connection
+\draw    (435.1,57.6) -- (435.1,110.18) ;
+\draw [shift={(435.1,112.18)}, rotate = 270] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+% Connection
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ]   (218.61,136.18) -- (219.06,189.68) ;
+\draw [shift={(219.08,191.68)}, rotate = 269.52] [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+% Connection
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ]   (325.42,137.18) -- (325.42,189.68) ;
+\draw [shift={(325.42,191.68)}, rotate = 270] [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+% Connection
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ]   (435.1,136.18) -- (435.1,189.68) ;
+\draw [shift={(435.1,191.68)}, rotate = 270] [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+% Connection
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ]   (134.45,203.68) -- (204.68,203.68) ;
+\draw [shift={(206.68,203.68)}, rotate = 180] [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+% Connection
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ]   (231.68,203.68) -- (311.92,203.68) ;
+\draw [shift={(313.92,203.68)}, rotate = 180] [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+% Connection
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ]   (336.92,203.68) -- (421.1,203.68) ;
+\draw [shift={(423.1,203.68)}, rotate = 180] [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+% Connection
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ]   (445.1,124.18) -- (535.33,124.18) ;
+\draw [shift={(537.33,124.18)}, rotate = 180] [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+% Connection
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ]   (229.01,124.27) -- (314.42,125.07) ;
+\draw [shift={(316.42,125.09)}, rotate = 180.54] [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+% Connection
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ]   (334.42,125.09) -- (423.1,124.28) ;
+\draw [shift={(425.1,124.27)}, rotate = 179.48] [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+% Connection
+\draw    (219.18,215.68) -- (219.18,256.85) ;
+\draw [shift={(219.18,258.85)}, rotate = 270] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+% Connection
+\draw    (325.42,215.68) -- (325.42,256.85) ;
+\draw [shift={(325.42,258.85)}, rotate = 270] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+% Connection
+\draw    (435.1,215.68) -- (435.1,256.85) ;
+\draw [shift={(435.1,258.85)}, rotate = 270] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+% Connection
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ]   (464.6,271.85) -- (512.83,271.85) ;
+\draw [shift={(514.83,271.85)}, rotate = 180] [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+% Connection
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ]   (354.42,271.85) -- (403.6,271.85) ;
+\draw [shift={(405.6,271.85)}, rotate = 180] [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+% Connection
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ]   (248.68,271.85) -- (294.42,271.85) ;
+\draw [shift={(296.42,271.85)}, rotate = 180] [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+% Connection
+\draw    (576.83,271.85) -- (630.82,271.85) ;
+\draw [shift={(632.82,271.85)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+% Connection
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ]   (460.6,45.26) .. controls (700.5,42.01) and (-8.5,277) .. (189.68,270.58) ;
+\draw [shift={(189.68,270.58)}, rotate = 178.15] [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+
+\end{tikzpicture}
+
+
+\section{Note}
+AI was not able to figure out how to do the curved arrow in xypic at all. Google search AI (gemini) was not able to either, but recommended using \verb|\crv| but was not useful.
+\end{document}
+
+
