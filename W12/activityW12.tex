@@ -1,0 +1,159 @@
+\documentclass{beamer} 
+
+
+%Theme (more on this next week)
+\usetheme{AnnArbor}
+
+% Preamble:
+
+%Here's where packages go. 
+\usepackage{amsmath} %includes lots of mathematical symbols and content
+\usepackage{lipsum} % For blind text
+%\usepackage{fullpage}
+%\usepackage[margin=1in]{geometry}
+%\usepackage{geometry}
+%\geometry{
+%  top=1in,
+%  inner=1in,
+%  outer=1in,
+%  bottom=1in,
+%}
+\usepackage{enumerate}
+\usepackage{array,tabularx,multirow} %Helpful for certain tables and table features
+\usepackage{graphicx}
+\graphicspath{ {./Images/} }
+\usepackage{wrapfig}
+\usepackage{animate}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+%\usepackage[all]{xypic}
+\usepackage{xcolor}
+% \usepackage{minted}
+\usepackage{hyperref}%%Generally hyperref should be the last package loaded. 
+%\hypersetup{
+%    colorlinks=true,
+%    urlcolor=blue,
+%    linkcolor=black
+%}
+
+
+% To make typesetting augmented matrices easier. Code taken from
+% https://tex.stackexchange.com/questions/2233/whats-the-best-way-make-an-augmented-coefficient-matrix 
+% \makeatletter
+% \renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+%   \hskip -\arraycolsep
+%   \let\@ifnextchar\new@ifnextchar
+%   \array{#1}}
+% \makeatother
+
+%%Custom Commands
+% \newcommand{\Z}{\mathbb{Z}}
+% \newcommand{\twobytwo}[4]{\begin{bmatrix} #1 & #2 \\ #3 & #4 \end{bmatrix}}
+% \DeclareMathOperator{\Ker}{Ker}
+% \DeclareMathOperator{\coker}{coker}
+
+\title{Math 3680: Week 12}
+\author{Arjan Singh Ellingson}
+%\date{August 24th, 2026}
+\date{\today}
+\institute[Cal Poly]{California Polytechnic State University}
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{frame}
+    \maketitle
+\end{frame}
+% I am copying an existing presentation I made earlier in october in an SE class on GraphQL methods. Hopefully this isn't too boring of a read...
+% i also prefer using minted for code blocks over verbatim and texttt but it is a janky install
+
+\begin{frame}
+    \frametitle{Introduction}
+    GraphQL (you may see gql) may is an API method that allows for communication between a client or user and a server.
+
+    GraphQL is an alternative to the more common \texttt{REST} format used in web development.
+
+    Calls are executed from files with the extension \texttt{.gql} or \texttt{.graphql}.
+
+    It is not limited to a specific database or backend language.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Brief History \& Alternatives}
+    \begin{enumerate}
+        % these should make three slides shown sequentially 
+        \item<1->started by Facebook in 2012, aiming to becoming open source by 2015
+        \item<2->2018: GraphQL was adopted by GraphQL Foundation, with parent Linux Foundation\footnote{https://en.wikipedia.org/wiki/GraphQL}
+
+        \item<3->Currently: APIs of companies like Facebook, GitHub (\texttt{gh cli}), Yelp, and Shopify utilize gql format
+        \item<4->GraphQL combines each of REST's endpoints into one endpoint (usually called \texttt{/graphql})
+        \item<5->The Problem: Rest often \textbf{overfetches} or \textbf{underfetches} the data required.
+    \end{enumerate}
+\end{frame}
+
+% requires fragile because call is in a verbatim env
+\begin{frame}[fragile]
+    \frametitle{Structure of a GraphQL Call}
+    A basic call is formatted as
+    \begin{verbatim}     
+schema {     
+    query: Query     
+    mutation: Mutation     
+}     
+type Query {}     
+type Mutation {}     
+\end{verbatim}
+\end{frame}
+
+
+\begin{frame}[fragile]     
+\frametitle{Example from a different Coding Project}  
+
+\tiny
+\begin{columns}[T,onlytextwidth]
+\begin{column}{0.33\textwidth}
+\begin{semiverbatim}
+\pause
+    type ArtistNode {
+      id: ID!
+      label: String!
+      genre: String
+      era: String
+      image: String
+      kind: NodeKind
+      visible: Boolean!
+    }
+\pause
+    type RelationshipEdge {
+      id: ID!
+      source: ArtistNode!
+      target: ArtistNode!
+      type: String!
+      directed: Boolean!
+      year: Int
+      note: String
+      song: SongRef
+    }
+\end{semiverbatim}
+\end{column}
+\begin{column}{0.66\textwidth}
+\begin{semiverbatim}
+\pause
+    type Query {
+      artists(visibleOnly: Boolean = false): [ArtistNode!]!
+    
+      artist(id: ID!): ArtistNode
+    
+      edges(type: String, targetLabel: String): [RelationshipEdge!]!
+    }
+\end{semiverbatim}
+\end{column}
+\end{columns}
+
+\end{frame}
+
+\end{document}
+
+
+
